@@ -78,9 +78,7 @@ abstract class BasePartitionAlgorithm implements PartitionAlgorithmInterface {
    * {@inheritdoc}
    */
   public function generateDataPartition(array $items = array()) {
-    $partition = new Partition();
-
-    $partition->addItems(
+    return $this->getPartition()->addItems(
       array_map(function ($item) {
         if ($item instanceof PartitionItemInterface) {
           return $item;
@@ -91,8 +89,6 @@ abstract class BasePartitionAlgorithm implements PartitionAlgorithmInterface {
         );
       }, $items)
     );
-
-    return $partition;
   }
 
   /**
