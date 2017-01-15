@@ -2,15 +2,14 @@
 
 namespace drupol\phpartition;
 
-use PhpCollection\Map;
-use PhpCollection\MapInterface;
+use phootwork\collection\Map;
 
 /**
  * Class Partition.
  *
  * @package drupol\phpartition
  */
-class Partition extends Map implements MapInterface {
+class Partition extends Map {
 
   /**
    * The algorithm in use.
@@ -72,7 +71,7 @@ class Partition extends Map implements MapInterface {
     return array_values(
       array_map(function ($item) {
         return $item->getItem();
-      }, $this->all())
+      }, $this->toArray())
     );
   }
 
@@ -83,7 +82,7 @@ class Partition extends Map implements MapInterface {
    *   The partition's weight.
    */
   public function getWeight() {
-    return array_reduce($this->all(), function ($sum, $item) {
+    return array_reduce($this->toArray(), function ($sum, $item) {
       $sum += $item->getValue();
       return $sum;
     });
@@ -141,14 +140,14 @@ class Partition extends Map implements MapInterface {
    */
   public function sortByValue($order = 'ASC') {
     if ('ASC' == $order) {
-      $this->sortWith(function ($itemA, $itemB) {
-        return $this->get($itemA)->get()->getValue() > $this->get($itemB)->get()->getValue();
+      $this->sort(function ($itemA, $itemB) {
+        return $itemA->getValue() > $itemB->getValue();
       });
     }
 
     if ('DESC' == $order) {
-      $this->sortWith(function ($itemA, $itemB) {
-        return $this->get($itemA)->get()->getValue() < $this->get($itemB)->get()->getValue();
+      $this->sort(function ($itemA, $itemB) {
+        return $itemA->getValue() < $itemB->getValue();
       });
     }
 

@@ -131,7 +131,7 @@ abstract class BasePartitionAlgorithm implements PartitionAlgorithmInterface {
    * {@inheritdoc}
    */
   public function getResult() {
-    $this->getPartitionContainer()->addItemsToPartition($this->getDataPartition()->all());
+    $this->getPartitionContainer()->addItemsToPartition($this->getDataPartition()->toArray());
 
     return $this->getPartitionContainer()->getPartitionsItemsArray();
   }
@@ -140,7 +140,7 @@ abstract class BasePartitionAlgorithm implements PartitionAlgorithmInterface {
    * {@inheritdoc}
    */
   public function getPartitionWeight(Partition $partition) {
-    return $partition->count();
+    return $partition->size();
   }
 
   /**

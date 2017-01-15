@@ -18,16 +18,16 @@ class BruteForce extends BasePartitionAlgorithm implements PartitionAlgorithmInt
    */
   public function getResult() {
     $this->getDataPartition()->sortByValue('ASC');
-    $partitionSize = ($this->getSize() > $this->getDataPartition()->count()) ? $this->getDataPartition()->count() : $this->getSize();
+    $partitionSize = ($this->getSize() > $this->getDataPartition()->size()) ? $this->getDataPartition()->size() : $this->getSize();
 
     for ($p = $partitionSize; $p > 1; $p--) {
       $best = $this->getDataPartition()->getWeight();
       $target = ($best) / $p;
       $goodSubset = array();
-      $maxSize = floor($this->getDataPartition()->count() / $p);
+      $maxSize = floor($this->getDataPartition()->size() / $p);
 
       for ($i = 1; $i <= $maxSize; $i++) {
-        $permutations = new Permutations($this->getDataPartition()->values(), $i);
+        $permutations = new Permutations($this->getDataPartition()->toArray(), $i);
         foreach ($permutations->generator() as $subset) {
           $x = 0;
           foreach ($subset as $item) {
@@ -44,7 +44,7 @@ class BruteForce extends BasePartitionAlgorithm implements PartitionAlgorithmInt
       $this->getDataPartition()->deleteItems($goodSubset);
     }
 
-    $this->getPartitionContainer()->insert($this->getPartition()->addItems($this->getDataPartition()->all()));
+    $this->getPartitionContainer()->insert($this->getPartition()->addItems($this->getDataPartition()->toArray()));
 
     return $this->getPartitionContainer()->getPartitionsItemsArray();
   }

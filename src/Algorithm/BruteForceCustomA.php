@@ -22,20 +22,18 @@ class BruteForceCustomA extends BasePartitionAlgorithm implements PartitionAlgor
     // Sort the initial data set ascending.
     $this->getDataPartition()->sortByValue('ASC');
     // Compute the maximum value of the variance.
-    $variance = pow(2, $this->getDataPartition()->count());
+    $variance = pow(2, $this->getDataPartition()->size());
     // Set a default value for the variable that will contain the solution.
     $solution = NULL;
     // Get the number of elements in the input dataset.
-    $count = $this->getDataPartition()->count();
+    $count = $this->getDataPartition()->size();
     // Compute the size of a chunk. Ceiling the value because it cannot be zero.
     $chunkSize = ceil($count / $this->getSize());
-    // Get the dataset.
-    $dataset = $this->getDataPartition()->all();
     // Get the rest of the division of the element count by the number of
     // partitions.
     $rest = $count % $this->getSize();
 
-    $permutations = new Permutations($this->getDataPartition()->values());
+    $permutations = new Permutations($this->getDataPartition()->toArray());
 
     // Loop through each permutation and
     // compute the variance of each subsetchunks.
@@ -46,7 +44,7 @@ class BruteForceCustomA extends BasePartitionAlgorithm implements PartitionAlgor
       $varianceCandidate = Statistics::variance(
         array_map(function ($items) {
           $partition = new Partition();
-          $partition->setAll($items);
+          $partition->addItems($items);
           return $partition->getWeight();
         }, array_chunk($subset, $chunkSize)
         )

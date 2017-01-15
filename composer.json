@@ -20,7 +20,7 @@
     "require": {
         "oefenweb/statistics": "^1.1",
         "drupol/phpermutations": "^1.0",
-        "phpcollection/phpcollection": "^0.5"
+        "phootwork/collection": "^1.4"
     },
     "require-dev": {
         "phpunit/phpunit": "^5.6",
