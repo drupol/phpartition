@@ -4,7 +4,7 @@ namespace drupol\phpartition\Algorithm;
 
 use drupol\phpartition\BasePartitionAlgorithm;
 use drupol\phpartition\PartitionAlgorithmInterface;
-use drupol\phpermutations\Permutations;
+use drupol\phpermutations\Generators\Permutations;
 
 /**
  * Class BruteForce.

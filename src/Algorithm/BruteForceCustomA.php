@@ -5,7 +5,7 @@ namespace drupol\phpartition\Algorithm;
 use drupol\phpartition\BasePartitionAlgorithm;
 use drupol\phpartition\Partition;
 use drupol\phpartition\PartitionAlgorithmInterface;
-use drupol\phpermutations\Permutations;
+use drupol\phpermutations\Generators\Permutations;
 use Oefenweb\Statistics\Statistics;
 
 /**
