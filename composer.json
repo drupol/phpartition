@@ -19,7 +19,7 @@
     ],
     "require": {
         "oefenweb/statistics": "^1.1",
-        "drupol/phpermutations": "^1.1",
+        "drupol/phpermutations": "^1.2",
         "phootwork/collection": "^1.4"
     },
     "require-dev": {
