@@ -7,7 +7,8 @@ namespace drupol\phpartition;
  *
  * @package drupol\phpartition
  */
-interface PartitionAlgorithmInterface {
+interface PartitionAlgorithmInterface
+{
 
   /**
    * Set the number of partition to use.
@@ -15,7 +16,7 @@ interface PartitionAlgorithmInterface {
    * @param int $size
    *   The number of partition.
    */
-  public function setSize($size);
+    public function setSize($size);
 
   /**
    * Get the size, the number of partition to use.
@@ -23,7 +24,7 @@ interface PartitionAlgorithmInterface {
    * @return int
    *   The number of partition.
    */
-  public function getSize();
+    public function getSize();
 
   /**
    * Get the partition container object.
@@ -31,7 +32,7 @@ interface PartitionAlgorithmInterface {
    * @return PartitionContainer
    *   The partition container object.
    */
-  public function getPartitionContainer();
+    public function getPartitionContainer();
 
   /**
    * Set the original data.
@@ -39,7 +40,7 @@ interface PartitionAlgorithmInterface {
    * @param mixed[] $data
    *   The original data.
    */
-  public function setData(array $data = array());
+    public function setData(array $data = array());
 
   /**
    * Get the original data.
@@ -47,7 +48,7 @@ interface PartitionAlgorithmInterface {
    * @return mixed[]
    *   The original data.
    */
-  public function getData();
+    public function getData();
 
   /**
    * Get the result as array chunks.
@@ -55,7 +56,7 @@ interface PartitionAlgorithmInterface {
    * @return array
    *   The result array.
    */
-  public function getResult();
+    public function getResult();
 
   /**
    * Set the function used to compute the value of an item.
@@ -63,7 +64,7 @@ interface PartitionAlgorithmInterface {
    * @param callable $callable
    *   The function.
    */
-  public function setItemAccessCallback(callable $callable = NULL);
+    public function setItemAccessCallback(callable $callable = null);
 
   /**
    * Get the function used to compute the value of an item.
@@ -71,7 +72,7 @@ interface PartitionAlgorithmInterface {
    * @return callable
    *   The function.
    */
-  public function getItemAccessCallback();
+    public function getItemAccessCallback();
 
   /**
    * Get the weight of a partition.
@@ -82,7 +83,7 @@ interface PartitionAlgorithmInterface {
    * @return int|float
    *   The weight.
    */
-  public function getPartitionWeight(Partition $partition);
+    public function getPartitionWeight(Partition $partition);
 
   /**
    * Get the original set of data as a partition.
@@ -90,7 +91,7 @@ interface PartitionAlgorithmInterface {
    * @return Partition
    *   A single partition containing the original items.
    */
-  public function getDataPartition();
+    public function getDataPartition();
 
   /**
    * Set the original set of data partition.
@@ -98,7 +99,7 @@ interface PartitionAlgorithmInterface {
    * @param Partition $partition
    *   The partition.
    */
-  public function setDataPartition(Partition $partition);
+    public function setDataPartition(Partition $partition);
 
   /**
    * Generate the original data partition.
@@ -109,7 +110,7 @@ interface PartitionAlgorithmInterface {
    * @return Partition
    *   The partition.
    */
-  public function generateDataPartition(array $items = array());
+    public function generateDataPartition(array $items = array());
 
   /**
    * Create and return a new partition, ready to use.
@@ -117,6 +118,5 @@ interface PartitionAlgorithmInterface {
    * @return Partition
    *   A new partition.
    */
-  public function getPartition();
-
+    public function getPartition();
 }

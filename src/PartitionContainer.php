@@ -7,21 +7,22 @@ namespace drupol\phpartition;
  *
  * @package drupol\phpartition
  */
-class PartitionContainer extends \SplHeap {
+class PartitionContainer extends \SplHeap
+{
 
   /**
    * The algorithm to use.
    *
    * @var BasePartitionAlgorithm
    */
-  protected $algo;
+    protected $algo;
 
   /**
    * The number of partition to use.
    *
    * @var int
    */
-  protected $size;
+    protected $size;
 
   /**
    * Override compare method.
@@ -33,16 +34,17 @@ class PartitionContainer extends \SplHeap {
    *
    *   {@inheritdoc}.
    */
-  public function compare($partitionA, $partitionB) {
-    $partitionAWeight = $partitionA->getAlgo()->getPartitionWeight($partitionA);
-    $partitionBWeight = $partitionB->getAlgo()->getPartitionWeight($partitionB);
+    public function compare($partitionA, $partitionB)
+    {
+        $partitionAWeight = $partitionA->getAlgo()->getPartitionWeight($partitionA);
+        $partitionBWeight = $partitionB->getAlgo()->getPartitionWeight($partitionB);
 
-    if ($partitionAWeight == $partitionBWeight) {
-      return 0;
+        if ($partitionAWeight == $partitionBWeight) {
+            return 0;
+        }
+
+        return ($partitionAWeight > $partitionBWeight) ? -1 : +1;
     }
-
-    return ($partitionAWeight > $partitionBWeight) ? -1 : +1;
-  }
 
   /**
    * Set the size of the container.
@@ -50,15 +52,16 @@ class PartitionContainer extends \SplHeap {
    * @param int $size
    *   The size.
    */
-  public function setSize($size) {
-    $this->size = $size;
+    public function setSize($size)
+    {
+        $this->size = $size;
 
-    for ($i = 0; $i < $size; $i++) {
-      $subset = new Partition();
-      $subset->setAlgo($this->getAlgo());
-      $this->insert($subset);
+        for ($i = 0; $i < $size; $i++) {
+            $subset = new Partition();
+            $subset->setAlgo($this->getAlgo());
+            $this->insert($subset);
+        }
     }
-  }
 
   /**
    * Return the size of the container.
@@ -66,9 +69,10 @@ class PartitionContainer extends \SplHeap {
    * @return int
    *   The number of partitions the container has.
    */
-  public function getSize() {
-    return $this->size;
-  }
+    public function getSize()
+    {
+        return $this->size;
+    }
 
   /**
    * Add items to the partition.
@@ -76,11 +80,12 @@ class PartitionContainer extends \SplHeap {
    * @param PartitionItem[] $items
    *   The items to add.
    */
-  public function addItemsToPartition(array $items = array()) {
-    foreach ($items as $item) {
-      $this->addItemToPartition($item);
+    public function addItemsToPartition(array $items = array())
+    {
+        foreach ($items as $item) {
+            $this->addItemToPartition($item);
+        }
     }
-  }
 
   /**
    * Add an item to the first partition.
@@ -88,12 +93,13 @@ class PartitionContainer extends \SplHeap {
    * @param \drupol\phpartition\PartitionItem $item
    *   The item to add.
    */
-  public function addItemToPartition(PartitionItem $item) {
-    $this->top();
-    $subset = $this->extract();
-    $subset->addItem($item);
-    $this->insert($subset);
-  }
+    public function addItemToPartition(PartitionItem $item)
+    {
+        $this->top();
+        $subset = $this->extract();
+        $subset->addItem($item);
+        $this->insert($subset);
+    }
 
   /**
    * Get the partition in the container.
@@ -101,16 +107,17 @@ class PartitionContainer extends \SplHeap {
    * @return Partition[]
    *   An array of partitions.
    */
-  public function getPartitions() {
-    $data = array();
-    $clone = clone $this;
+    public function getPartitions()
+    {
+        $data = array();
+        $clone = clone $this;
 
-    for ($clone->top(); $clone->valid(); $clone->next()) {
-      $data[] = $clone->current();
+        for ($clone->top(); $clone->valid(); $clone->next()) {
+            $data[] = $clone->current();
+        }
+
+        return $data;
     }
-
-    return $data;
-  }
 
   /**
    * Return the items from each partitions in the container.
@@ -118,15 +125,16 @@ class PartitionContainer extends \SplHeap {
    * @return mixed[]
    *   The items.
    */
-  public function getPartitionsItemsArray() {
-    $data = array();
+    public function getPartitionsItemsArray()
+    {
+        $data = array();
 
-    foreach ($this->getPartitions() as $subset) {
-      $data[] = $subset->getRawItems();
+        foreach ($this->getPartitions() as $subset) {
+            $data[] = $subset->getRawItems();
+        }
+
+        return array_values(array_filter($data));
     }
-
-    return array_values(array_filter($data));
-  }
 
   /**
    * Set the algorithm to use.
@@ -134,9 +142,10 @@ class PartitionContainer extends \SplHeap {
    * @param \drupol\phpartition\BasePartitionAlgorithm $algo
    *   The algorithm.
    */
-  public function setAlgo(BasePartitionAlgorithm $algo) {
-    $this->algo = $algo;
-  }
+    public function setAlgo(BasePartitionAlgorithm $algo)
+    {
+        $this->algo = $algo;
+    }
 
   /**
    * Get the algorithm.
@@ -144,8 +153,8 @@ class PartitionContainer extends \SplHeap {
    * @return BasePartitionAlgorithm
    *   The algorithm.
    */
-  public function getAlgo() {
-    return $this->algo;
-  }
-
+    public function getAlgo()
+    {
+        return $this->algo;
+    }
 }

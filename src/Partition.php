@@ -9,14 +9,15 @@ use phootwork\collection\Map;
  *
  * @package drupol\phpartition
  */
-class Partition extends Map {
+class Partition extends Map
+{
 
   /**
    * The algorithm in use.
    *
    * @var PartitionAlgorithmInterface
    */
-  protected $algo;
+    protected $algo;
 
   /**
    * Partition constructor.
@@ -24,10 +25,11 @@ class Partition extends Map {
    * @param PartitionItem[] $elements
    *   The list of elements.
    */
-  public function __construct(array $elements = array()) {
-    parent::__construct(array());
-    $this->addItems($elements);
-  }
+    public function __construct(array $elements = array())
+    {
+        parent::__construct(array());
+        $this->addItems($elements);
+    }
 
   /**
    * Add an item to the partition.
@@ -38,11 +40,12 @@ class Partition extends Map {
    * @return $this
    *   Return itself.
    */
-  public function addItem(PartitionItem $item) {
-    $this->set(spl_object_hash($item), $item);
+    public function addItem(PartitionItem $item)
+    {
+        $this->set(spl_object_hash($item), $item);
 
-    return $this;
-  }
+        return $this;
+    }
 
   /**
    * Add items to the partition.
@@ -53,13 +56,14 @@ class Partition extends Map {
    * @return $this
    *   Return itself.
    */
-  public function addItems(array $items = array()) {
-    foreach ($items as $item) {
-      $this->addItem($item);
-    }
+    public function addItems(array $items = array())
+    {
+        foreach ($items as $item) {
+            $this->addItem($item);
+        }
 
-    return $this;
-  }
+        return $this;
+    }
 
   /**
    * Get an array of original items.
@@ -67,13 +71,14 @@ class Partition extends Map {
    * @return array
    *   The original items.
    */
-  public function getRawItems() {
-    return array_values(
-      array_map(function ($item) {
-        return $item->getItem();
-      }, $this->toArray())
-    );
-  }
+    public function getRawItems()
+    {
+        return array_values(
+            array_map(function ($item) {
+                return $item->getItem();
+            }, $this->toArray())
+        );
+    }
 
   /**
    * Get the weight of the partition.
@@ -81,12 +86,13 @@ class Partition extends Map {
    * @return int
    *   The partition's weight.
    */
-  public function getWeight() {
-    return array_reduce($this->toArray(), function ($sum, $item) {
-      $sum += $item->getValue();
-      return $sum;
-    });
-  }
+    public function getWeight()
+    {
+        return array_reduce($this->toArray(), function ($sum, $item) {
+            $sum += $item->getValue();
+            return $sum;
+        });
+    }
 
   /**
    * Set the algorithm to use.
@@ -94,9 +100,10 @@ class Partition extends Map {
    * @param BasePartitionAlgorithm $algo
    *   The algorithm to use.
    */
-  public function setAlgo(BasePartitionAlgorithm $algo) {
-    $this->algo = $algo;
-  }
+    public function setAlgo(BasePartitionAlgorithm $algo)
+    {
+        $this->algo = $algo;
+    }
 
   /**
    * Get the algorithm in use.
@@ -104,9 +111,10 @@ class Partition extends Map {
    * @return PartitionAlgorithmInterface
    *   The algorithm in use.
    */
-  public function getAlgo() {
-    return $this->algo;
-  }
+    public function getAlgo()
+    {
+        return $this->algo;
+    }
 
   /**
    * Delete items from the partition.
@@ -114,11 +122,12 @@ class Partition extends Map {
    * @param PartitionItem[] $items
    *   The items to delete.
    */
-  public function deleteItems(array $items = array()) {
-    foreach ($items as $item) {
-      $this->delete($item);
+    public function deleteItems(array $items = array())
+    {
+        foreach ($items as $item) {
+            $this->delete($item);
+        }
     }
-  }
 
   /**
    * Delete an item from the partition.
@@ -126,9 +135,10 @@ class Partition extends Map {
    * @param PartitionItem $item
    *   The item to delete.
    */
-  public function delete(PartitionItem $item) {
-    $this->remove(spl_object_hash($item));
-  }
+    public function delete(PartitionItem $item)
+    {
+        $this->remove(spl_object_hash($item));
+    }
 
   /**
    * Sort the items of the partition in a particular order.
@@ -138,20 +148,20 @@ class Partition extends Map {
    *
    * @return $this
    */
-  public function sortByValue($order = 'ASC') {
-    if ('ASC' == $order) {
-      $this->sort(function ($itemA, $itemB) {
-        return $itemA->getValue() > $itemB->getValue();
-      });
+    public function sortByValue($order = 'ASC')
+    {
+        if ('ASC' == $order) {
+            $this->sort(function ($itemA, $itemB) {
+                return $itemA->getValue() > $itemB->getValue();
+            });
+        }
+
+        if ('DESC' == $order) {
+            $this->sort(function ($itemA, $itemB) {
+                return $itemA->getValue() < $itemB->getValue();
+            });
+        }
+
+        return $this;
     }
-
-    if ('DESC' == $order) {
-      $this->sort(function ($itemA, $itemB) {
-        return $itemA->getValue() < $itemB->getValue();
-      });
-    }
-
-    return $this;
-  }
-
 }

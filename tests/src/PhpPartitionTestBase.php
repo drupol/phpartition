@@ -9,13 +9,14 @@ use PHPUnit\Framework\TestCase;
  *
  * @package drupol\phpartition\Tests
  */
-class PhpPartitionTestBase extends TestCase {
+class PhpPartitionTestBase extends TestCase
+{
 
   /**
    * Setup the tests.
    */
-  public function setUp() {
-    parent::setUp();
-  }
-
+    public function setUp()
+    {
+        parent::setUp();
+    }
 }

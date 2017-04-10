@@ -7,11 +7,12 @@ namespace drupol\phpartition;
  *
  * @package drupol\phpartition
  */
-class SubsetItem {
+class SubsetItem
+{
 
-  protected $key;
-  protected $value;
-  protected $item;
+    protected $key;
+    protected $value;
+    protected $item;
 
   /**
    * SubsetItem constructor.
@@ -20,31 +21,34 @@ class SubsetItem {
    * @param $value
    * @param $item
    */
-  public function __construct($key, $value, $item) {
-    $this->key = $key;
-    $this->value = $value;
-    $this->item = $item;
-  }
+    public function __construct($key, $value, $item)
+    {
+        $this->key = $key;
+        $this->value = $value;
+        $this->item = $item;
+    }
 
   /**
    * @return mixed
    */
-  public function getValue() {
-    return $this->value;
-  }
+    public function getValue()
+    {
+        return $this->value;
+    }
 
   /**
    * @return mixed
    */
-  public function getKey(){
-    return $this->key;
-  }
+    public function getKey()
+    {
+        return $this->key;
+    }
 
   /**
    * @return mixed
    */
-  public function getItem() {
-    return $this->item;
-  }
-
+    public function getItem()
+    {
+        return $this->item;
+    }
 }

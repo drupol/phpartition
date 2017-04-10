@@ -7,7 +7,8 @@ namespace drupol\phpartition;
  *
  * @package drupol\phpartition
  */
-interface PartitionItemInterface {
+interface PartitionItemInterface
+{
 
   /**
    * Get the original item.
@@ -15,7 +16,7 @@ interface PartitionItemInterface {
    * @return mixed
    *   The original item.
    */
-  public function getItem();
+    public function getItem();
 
   /**
    * Get the value of the item.
@@ -23,6 +24,5 @@ interface PartitionItemInterface {
    * @return int|float
    *   The value of the item.
    */
-  public function getValue();
-
+    public function getValue();
 }

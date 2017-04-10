@@ -10,40 +10,43 @@ use drupol\phpartition\PartitionItem;
  *
  * @package drupol\phpartition\Tests
  */
-class SimpleTest extends PhpPartitionTestBase {
+class SimpleTest extends PhpPartitionTestBase
+{
 
   /**
    * Test the algorithm.
    *
    * @dataProvider simpleValueProvider
    */
-  public function testSimple($input, $output) {
-    $algo = new Simple();
-    $algo->setSize($input['partition']);
-    $this->assertEquals($input['partition'], $algo->getSize());
+    public function testSimple($input, $output)
+    {
+        $algo = new Simple();
+        $algo->setSize($input['partition']);
+        $this->assertEquals($input['partition'], $algo->getSize());
 
-    $algo->setData($input['data']);
-    $this->assertEquals($input['data'], $algo->getData());
+        $algo->setData($input['data']);
+        $this->assertEquals($input['data'], $algo->getData());
 
-    if (isset($input['callback'])) {
-      $algo->setItemAccessCallback($input['callback']);
+        if (isset($input['callback'])) {
+            $algo->setItemAccessCallback($input['callback']);
+        }
+
+        $this->assertEquals($output, $algo->getResult());
     }
-
-    $this->assertEquals($output, $algo->getResult());
-  }
 
   /**
    * Value provider.
    */
-  public function simpleValueProvider() {
-    $a = new \StdClass();
-    $a->id = 'a';
+    public function simpleValueProvider()
+    {
+        $a = new \StdClass();
+        $a->id = 'a';
 
-    $b = new \StdClass();
-    $b->id = 'b';
+        $b = new \StdClass();
+        $b->id = 'b';
 
-    return [
-      [
+        return [
+        [
         'input' => [
           'data' => [1, new PartitionItem($a, 2), new PartitionItem($b, 3), 4],
           'partition' => 2,
@@ -52,7 +55,7 @@ class SimpleTest extends PhpPartitionTestBase {
           [1, $b],
           [$a, 4],
         ],
-      ],
+        ],
       [
         'input' => [
           'data' => [1, 2, 3, 4],
@@ -62,8 +65,8 @@ class SimpleTest extends PhpPartitionTestBase {
           [1, 3],
           [2, 4],
         ],
-      ],
-      [
+        ],
+        [
         'input' => [
           'data' => [
             ['key' => 'item1', 'weight' => 1],
@@ -80,8 +83,7 @@ class SimpleTest extends PhpPartitionTestBase {
           [['key' => 'item1', 'weight' => 1], ['key' => 'item3', 'weight' => 3]],
           [['key' => 'item2', 'weight' => 2], ['key' => 'item4', 'weight' => 4]],
         ],
-      ],
-    ];
-  }
-
+        ],
+        ];
+    }
 }

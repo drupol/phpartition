@@ -10,6 +10,7 @@ use drupol\phpartition\PartitionAlgorithmInterface;
  *
  * @package drupol\phpartition\Algorithm
  */
-class Simple extends BasePartitionAlgorithm implements PartitionAlgorithmInterface {
+class Simple extends BasePartitionAlgorithm implements PartitionAlgorithmInterface
+{
 
 }

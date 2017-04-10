@@ -11,22 +11,24 @@ use drupol\phpartition\PartitionAlgorithmInterface;
  *
  * @package drupol\phpartition\Algorithm
  */
-class Greedy extends BasePartitionAlgorithm implements PartitionAlgorithmInterface {
+class Greedy extends BasePartitionAlgorithm implements PartitionAlgorithmInterface
+{
 
   /**
    * {@inheritdoc}
    */
-  public function getResult() {
-    // The greedy algorithm needs the input data to be sorted (desc).
-    $this->getDataPartition()->sortByValue('DESC');
-    return parent::getResult();
-  }
+    public function getResult()
+    {
+        // The greedy algorithm needs the input data to be sorted (desc).
+        $this->getDataPartition()->sortByValue('DESC');
+        return parent::getResult();
+    }
 
   /**
    * {@inheritdoc}
    */
-  public function getPartitionWeight(Partition $partition) {
-    return $partition->getWeight();
-  }
-
+    public function getPartitionWeight(Partition $partition)
+    {
+        return $partition->getWeight();
+    }
 }
