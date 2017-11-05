@@ -17,6 +17,8 @@ class BruteForceCustomATest extends PhpPartitionTestBase
    * Test the algorithm.
    *
    * @dataProvider simpleValueProvider
+   * @param mixed $input
+   * @param mixed $output
    */
     public function testBruteForce($input, $output)
     {
@@ -34,9 +36,9 @@ class BruteForceCustomATest extends PhpPartitionTestBase
         $this->assertEquals($output, $algo->getResult());
     }
 
-  /**
-   * Value provider.
-   */
+    /**
+     * Value provider.
+     */
     public function simpleValueProvider()
     {
         $a = new \StdClass();
@@ -56,7 +58,7 @@ class BruteForceCustomATest extends PhpPartitionTestBase
           [$a, $b],
         ],
         ],
-      [
+        [
         'input' => [
           'data' => [1, 2, 3, 4],
           'partition' => 4,
@@ -94,7 +96,7 @@ class BruteForceCustomATest extends PhpPartitionTestBase
           ],
           'partition' => 2,
           'callback' => function ($item) {
-            return $item['weight'];
+              return $item['weight'];
           },
         ],
         'output' => [

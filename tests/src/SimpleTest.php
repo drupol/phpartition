@@ -17,6 +17,8 @@ class SimpleTest extends PhpPartitionTestBase
    * Test the algorithm.
    *
    * @dataProvider simpleValueProvider
+   * @param mixed $input
+   * @param mixed $output
    */
     public function testSimple($input, $output)
     {
@@ -34,9 +36,9 @@ class SimpleTest extends PhpPartitionTestBase
         $this->assertEquals($output, $algo->getResult());
     }
 
-  /**
-   * Value provider.
-   */
+    /**
+     * Value provider.
+     */
     public function simpleValueProvider()
     {
         $a = new \StdClass();
@@ -56,7 +58,7 @@ class SimpleTest extends PhpPartitionTestBase
           [$a, 4],
         ],
         ],
-      [
+        [
         'input' => [
           'data' => [1, 2, 3, 4],
           'partition' => 2,
@@ -76,7 +78,7 @@ class SimpleTest extends PhpPartitionTestBase
           ],
           'partition' => 2,
           'callback' => function ($item) {
-            return $item['weight'];
+              return $item['weight'];
           },
         ],
         'output' => [

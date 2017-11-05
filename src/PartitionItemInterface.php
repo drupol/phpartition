@@ -18,11 +18,11 @@ interface PartitionItemInterface
    */
     public function getItem();
 
-  /**
-   * Get the value of the item.
-   *
-   * @return int|float
-   *   The value of the item.
-   */
+    /**
+     * Get the value of the item.
+     *
+     * @return int|float
+     *   The value of the item.
+     */
     public function getValue();
 }

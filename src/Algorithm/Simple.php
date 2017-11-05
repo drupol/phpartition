@@ -12,5 +12,4 @@ use drupol\phpartition\PartitionAlgorithmInterface;
  */
 class Simple extends BasePartitionAlgorithm implements PartitionAlgorithmInterface
 {
-
 }

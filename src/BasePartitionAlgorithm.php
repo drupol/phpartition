@@ -17,73 +17,73 @@ abstract class BasePartitionAlgorithm implements PartitionAlgorithmInterface
    */
     protected $data;
 
-  /**
-   * A single partition containing the original data in the right format.
-   *
-   * @var Partition
-   */
+    /**
+     * A single partition containing the original data in the right format.
+     *
+     * @var Partition
+     */
     protected $dataPartition;
 
-  /**
-   * The partition container.
-   *
-   * @var PartitionContainer
-   */
+    /**
+     * The partition container.
+     *
+     * @var PartitionContainer
+     */
     protected $partitionContainer;
 
-  /**
-   * The function used to compute the value of an item.
-   *
-   * @var callable
-   */
+    /**
+     * The function used to compute the value of an item.
+     *
+     * @var callable
+     */
     protected $itemAccessCallback;
 
-  /**
-   * BasePartitionAlgorithm constructor.
-   */
+    /**
+     * BasePartitionAlgorithm constructor.
+     */
     public function __construct()
     {
         $this->partitionContainer = new PartitionContainer();
         $this->partitionContainer->setAlgo($this);
     }
 
-  /**
-   * {@inheritdoc}
-   */
-    public function setData(array $data = array())
+    /**
+     * {@inheritdoc}
+     */
+    public function setData(array $data = [])
     {
         $this->data = $data;
         $this->setDataPartition($this->generateDataPartition($this->getData()));
     }
 
-  /**
-   * {@inheritdoc}
-   */
+    /**
+     * {@inheritdoc}
+     */
     public function getData()
     {
         return $this->data;
     }
 
-  /**
-   * {@inheritdoc}
-   */
+    /**
+     * {@inheritdoc}
+     */
     public function setDataPartition(Partition $partition)
     {
         $this->dataPartition = $partition;
     }
 
-  /**
-   * {@inheritdoc}
-   */
+    /**
+     * {@inheritdoc}
+     */
     public function getDataPartition()
     {
         return $this->dataPartition;
     }
 
-  /**
-   * {@inheritdoc}
-   */
-    public function generateDataPartition(array $items = array())
+    /**
+     * {@inheritdoc}
+     */
+    public function generateDataPartition(array $items = [])
     {
         return $this->getPartition()->addItems(
             array_map(function ($item) {
@@ -98,50 +98,50 @@ abstract class BasePartitionAlgorithm implements PartitionAlgorithmInterface
         );
     }
 
-  /**
-   * {@inheritdoc}
-   */
+    /**
+     * {@inheritdoc}
+     */
     public function setSize($size)
     {
         $this->getPartitionContainer()->setSize($size);
     }
 
-  /**
-   * {@inheritdoc}
-   */
+    /**
+     * {@inheritdoc}
+     */
     public function getSize()
     {
         return $this->getPartitionContainer()->getSize();
     }
 
-  /**
-   * {@inheritdoc}
-   */
+    /**
+     * {@inheritdoc}
+     */
     public function setItemAccessCallback(callable $callable = null)
     {
         $this->itemAccessCallback = $callable;
         $this->setData($this->getData());
     }
 
-  /**
-   * {@inheritdoc}
-   */
+    /**
+     * {@inheritdoc}
+     */
     public function getItemAccessCallback()
     {
         return $this->itemAccessCallback;
     }
 
-  /**
-   * {@inheritdoc}
-   */
+    /**
+     * {@inheritdoc}
+     */
     public function getPartitionContainer()
     {
         return $this->partitionContainer;
     }
 
-  /**
-   * {@inheritdoc}
-   */
+    /**
+     * {@inheritdoc}
+     */
     public function getResult()
     {
         $this->getPartitionContainer()->addItemsToPartition($this->getDataPartition()->toArray());
@@ -149,17 +149,17 @@ abstract class BasePartitionAlgorithm implements PartitionAlgorithmInterface
         return $this->getPartitionContainer()->getPartitionsItemsArray();
     }
 
-  /**
-   * {@inheritdoc}
-   */
+    /**
+     * {@inheritdoc}
+     */
     public function getPartitionWeight(Partition $partition)
     {
         return $partition->size();
     }
 
-  /**
-   * {@inheritdoc}
-   */
+    /**
+     * {@inheritdoc}
+     */
     public function getPartition()
     {
         $partition = new Partition();

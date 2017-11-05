@@ -10,59 +10,59 @@ class Subset implements \Countable
    */
     protected $algo;
 
-  /**
-   * @var SubsetItem[]
-   */
+    /**
+     * @var SubsetItem[]
+     */
     protected $items;
 
-  /**
-   * @return int
-   */
+    /**
+     * @return int
+     */
     public function count()
     {
         return count($this->getItems());
     }
 
-  /**
-   * @param \drupol\phpartition\SubsetItem $item
-   */
+    /**
+     * @param \drupol\phpartition\SubsetItem $item
+     */
     public function addItem(SubsetItem $item)
     {
         $this->items[$item->getKey()] = $item;
     }
 
-  /**
-   * @param SubsetItem[] $items
-   */
-    public function addItems(array $items = array())
+    /**
+     * @param SubsetItem[] $items
+     */
+    public function addItems(array $items = [])
     {
         foreach ($items as $item) {
             $this->addItem($item);
         }
     }
 
-  /**
-   * @return SubsetItem[]
-   */
+    /**
+     * @return SubsetItem[]
+     */
     public function getItems()
     {
         return (array) $this->items;
     }
 
-  /**
-   * @param SubsetItem[] $items
-   */
-    public function setItems(array $items = array())
+    /**
+     * @param SubsetItem[] $items
+     */
+    public function setItems(array $items = [])
     {
         $this->items = $items;
     }
 
-  /**
-   * @return array
-   */
+    /**
+     * @return array
+     */
     public function getItemsValues()
     {
-        $data = array();
+        $data = [];
 
         foreach ($this->getItems() as $item) {
             $data[$item->getKey()] = $item->getValue();
@@ -71,12 +71,12 @@ class Subset implements \Countable
         return $data;
     }
 
-  /**
-   * @return array
-   */
+    /**
+     * @return array
+     */
     public function getRawItems()
     {
-        $data = array();
+        $data = [];
 
         foreach ($this->getItems() as $item) {
             $data[] = $item->getItem();
@@ -85,9 +85,9 @@ class Subset implements \Countable
         return $data;
     }
 
-  /**
-   * @return int
-   */
+    /**
+     * @return int
+     */
     public function getWeight()
     {
         $sum = 0;
@@ -99,53 +99,53 @@ class Subset implements \Countable
         return $sum;
     }
 
-  /**
-   * @param \drupol\phpartition\BasePartitionAlgorithm $algo
-   */
+    /**
+     * @param \drupol\phpartition\BasePartitionAlgorithm $algo
+     */
     public function setAlgo(BasePartitionAlgorithm $algo)
     {
         $this->algo = $algo;
     }
 
-  /**
-   * @return BasePartitionAlgorithm
-   */
+    /**
+     * @return BasePartitionAlgorithm
+     */
     public function getAlgo()
     {
         return $this->algo;
     }
 
-  /**
-   * Clear the subset.
-   */
+    /**
+     * Clear the subset.
+     */
     public function clear()
     {
         $this->setItems();
     }
 
-  /**
-   * @param $key
-   *
-   * @return \drupol\phpartition\SubsetItem
-   */
+    /**
+     * @param $key
+     *
+     * @return \drupol\phpartition\SubsetItem
+     */
     public function getItem($key)
     {
         return $this->items[$key];
     }
 
-  /**
-   * @param SubsetItem[] $items
-   */
-    public function deleteItems(array $items = array())
+    /**
+     * @param SubsetItem[] $items
+     */
+    public function deleteItems(array $items = [])
     {
         foreach ($items as $item) {
             $this->delete($item);
         }
     }
 
-  /**
-   * @param \drupol\phpartition\SubsetItem $item
-   */
+    /**
+     * @param \drupol\phpartition\SubsetItem $item
+     */
     public function delete(SubsetItem $item)
     {
         foreach ($this->items as $key => $value) {
@@ -155,11 +155,11 @@ class Subset implements \Countable
         }
     }
 
-  /**
-   * @param string $order
-   *
-   * @return $this
-   */
+    /**
+     * @param string $order
+     *
+     * @return $this
+     */
     public function sortByValue($order = 'ASC')
     {
         $data = $this->getItems();

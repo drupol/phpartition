@@ -9,27 +9,26 @@ namespace drupol\phpartition;
  */
 class PartitionItem implements PartitionItemInterface
 {
-
     protected $item;
     protected $valueOrCallable;
 
-  /**
-   * PartitionItem constructor.
-   *
-   * @param mixed $item
-   *   The item.
-   * @param float|callable $valueOrCallable
-   *   A callable that will get it's value or a value.
-   */
+    /**
+     * PartitionItem constructor.
+     *
+     * @param mixed $item
+     *   The item.
+     * @param float|callable $valueOrCallable
+     *   A callable that will get it's value or a value.
+     */
     public function __construct($item, $valueOrCallable = null)
     {
         $this->item = $item;
         $this->valueOrCallable = $valueOrCallable;
     }
 
-  /**
-   * {@inheritdoc}
-   */
+    /**
+     * {@inheritdoc}
+     */
     public function getValue()
     {
         if (is_callable($this->valueOrCallable)) {
@@ -43,9 +42,9 @@ class PartitionItem implements PartitionItemInterface
         return is_numeric($this->item) ? $this->item : 0;
     }
 
-  /**
-   * {@inheritdoc}
-   */
+    /**
+     * {@inheritdoc}
+     */
     public function getItem()
     {
         return $this->item;

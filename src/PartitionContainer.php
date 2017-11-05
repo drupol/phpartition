@@ -17,23 +17,23 @@ class PartitionContainer extends \SplHeap
    */
     protected $algo;
 
-  /**
-   * The number of partition to use.
-   *
-   * @var int
-   */
+    /**
+     * The number of partition to use.
+     *
+     * @var int
+     */
     protected $size;
 
-  /**
-   * Override compare method.
-   *
-   * @param Partition $partitionA
-   *   The first partition.
-   * @param Partition $partitionB
-   *   The second partition.
-   *
-   *   {@inheritdoc}.
-   */
+    /**
+     * Override compare method.
+     *
+     * @param Partition $partitionA
+     *   The first partition.
+     * @param Partition $partitionB
+     *   The second partition.
+     *
+     *   {@inheritdoc}.
+     */
     public function compare($partitionA, $partitionB)
     {
         $partitionAWeight = $partitionA->getAlgo()->getPartitionWeight($partitionA);
@@ -46,12 +46,12 @@ class PartitionContainer extends \SplHeap
         return ($partitionAWeight > $partitionBWeight) ? -1 : +1;
     }
 
-  /**
-   * Set the size of the container.
-   *
-   * @param int $size
-   *   The size.
-   */
+    /**
+     * Set the size of the container.
+     *
+     * @param int $size
+     *   The size.
+     */
     public function setSize($size)
     {
         $this->size = $size;
@@ -63,36 +63,36 @@ class PartitionContainer extends \SplHeap
         }
     }
 
-  /**
-   * Return the size of the container.
-   *
-   * @return int
-   *   The number of partitions the container has.
-   */
+    /**
+     * Return the size of the container.
+     *
+     * @return int
+     *   The number of partitions the container has.
+     */
     public function getSize()
     {
         return $this->size;
     }
 
-  /**
-   * Add items to the partition.
-   *
-   * @param PartitionItem[] $items
-   *   The items to add.
-   */
-    public function addItemsToPartition(array $items = array())
+    /**
+     * Add items to the partition.
+     *
+     * @param PartitionItem[] $items
+     *   The items to add.
+     */
+    public function addItemsToPartition(array $items = [])
     {
         foreach ($items as $item) {
             $this->addItemToPartition($item);
         }
     }
 
-  /**
-   * Add an item to the first partition.
-   *
-   * @param \drupol\phpartition\PartitionItem $item
-   *   The item to add.
-   */
+    /**
+     * Add an item to the first partition.
+     *
+     * @param \drupol\phpartition\PartitionItem $item
+     *   The item to add.
+     */
     public function addItemToPartition(PartitionItem $item)
     {
         $this->top();
@@ -101,15 +101,15 @@ class PartitionContainer extends \SplHeap
         $this->insert($subset);
     }
 
-  /**
-   * Get the partition in the container.
-   *
-   * @return Partition[]
-   *   An array of partitions.
-   */
+    /**
+     * Get the partition in the container.
+     *
+     * @return Partition[]
+     *   An array of partitions.
+     */
     public function getPartitions()
     {
-        $data = array();
+        $data = [];
         $clone = clone $this;
 
         for ($clone->top(); $clone->valid(); $clone->next()) {
@@ -119,15 +119,15 @@ class PartitionContainer extends \SplHeap
         return $data;
     }
 
-  /**
-   * Return the items from each partitions in the container.
-   *
-   * @return mixed[]
-   *   The items.
-   */
+    /**
+     * Return the items from each partitions in the container.
+     *
+     * @return mixed[]
+     *   The items.
+     */
     public function getPartitionsItemsArray()
     {
-        $data = array();
+        $data = [];
 
         foreach ($this->getPartitions() as $subset) {
             $data[] = $subset->getRawItems();
@@ -136,23 +136,23 @@ class PartitionContainer extends \SplHeap
         return array_values(array_filter($data));
     }
 
-  /**
-   * Set the algorithm to use.
-   *
-   * @param \drupol\phpartition\BasePartitionAlgorithm $algo
-   *   The algorithm.
-   */
+    /**
+     * Set the algorithm to use.
+     *
+     * @param \drupol\phpartition\BasePartitionAlgorithm $algo
+     *   The algorithm.
+     */
     public function setAlgo(BasePartitionAlgorithm $algo)
     {
         $this->algo = $algo;
     }
 
-  /**
-   * Get the algorithm.
-   *
-   * @return BasePartitionAlgorithm
-   *   The algorithm.
-   */
+    /**
+     * Get the algorithm.
+     *
+     * @return BasePartitionAlgorithm
+     *   The algorithm.
+     */
     public function getAlgo()
     {
         return $this->algo;

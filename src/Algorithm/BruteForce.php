@@ -27,7 +27,7 @@ class BruteForce extends BasePartitionAlgorithm implements PartitionAlgorithmInt
         for ($p = $partitionSize; $p > 1; $p--) {
             $best = $this->getDataPartition()->getWeight();
             $target = ($best) / $p;
-            $goodSubset = array();
+            $goodSubset = [];
             $maxSize = floor($this->getDataPartition()->size() / $p);
 
             for ($i = 1; $i <= $maxSize; $i++) {

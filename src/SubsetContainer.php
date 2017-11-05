@@ -10,14 +10,14 @@ class SubsetContainer extends \SplHeap
    */
     protected $algo;
 
-  /**
-   * Override compare method.
-   *
-   * @param Subset $a
-   * @param Subset $b
-   *
-   * @return int
-   */
+    /**
+     * Override compare method.
+     *
+     * @param Subset $a
+     * @param Subset $b
+     *
+     * @return int
+     */
     public function compare($a, $b)
     {
         $al = $a->getAlgo()->getSubsetWeight($a);
@@ -29,9 +29,9 @@ class SubsetContainer extends \SplHeap
         return ($al > $bl) ? -1 : +1;
     }
 
-  /**
-   * @param $partition
-   */
+    /**
+     * @param $partition
+     */
     public function setPartition($partition)
     {
         for ($i=0; $i<$partition; $i++) {
@@ -41,19 +41,19 @@ class SubsetContainer extends \SplHeap
         }
     }
 
-  /**
-   * @param SubsetItem[] $items
-   */
-    public function addItemsToSubset(array $items = array())
+    /**
+     * @param SubsetItem[] $items
+     */
+    public function addItemsToSubset(array $items = [])
     {
         foreach ($items as $item) {
             $this->addItemToSubset($item);
         }
     }
 
-  /**
-   * @param \drupol\phpartition\SubsetItem $item
-   */
+    /**
+     * @param \drupol\phpartition\SubsetItem $item
+     */
     public function addItemToSubset(SubsetItem $item)
     {
         $this->top();
@@ -62,12 +62,12 @@ class SubsetContainer extends \SplHeap
         $this->insert($subset);
     }
 
-  /**
-   * @return Subset[]
-   */
+    /**
+     * @return Subset[]
+     */
     public function getSubsets()
     {
-        $data = array();
+        $data = [];
         $clone = clone $this;
 
         for ($clone->top(); $clone->valid(); $clone->next()) {
@@ -77,12 +77,12 @@ class SubsetContainer extends \SplHeap
         return $data;
     }
 
-  /**
-   * @return array
-   */
+    /**
+     * @return array
+     */
     public function getSubsetsAndItemsAsArray()
     {
-        $data = array();
+        $data = [];
 
         foreach ($this->getSubsets() as $subset) {
             $data[] = $subset->getRawItems();
@@ -91,17 +91,17 @@ class SubsetContainer extends \SplHeap
         return array_values(array_filter($data));
     }
 
-  /**
-   * @param \drupol\phpartition\BasePartitionAlgorithm $algo
-   */
+    /**
+     * @param \drupol\phpartition\BasePartitionAlgorithm $algo
+     */
     public function setAlgo(BasePartitionAlgorithm $algo)
     {
         $this->algo = $algo;
     }
 
-  /**
-   * @return BasePartitionAlgorithm
-   */
+    /**
+     * @return BasePartitionAlgorithm
+     */
     public function getAlgo()
     {
         return $this->algo;

@@ -24,9 +24,9 @@ class Greedy extends BasePartitionAlgorithm implements PartitionAlgorithmInterfa
         return parent::getResult();
     }
 
-  /**
-   * {@inheritdoc}
-   */
+    /**
+     * {@inheritdoc}
+     */
     public function getPartitionWeight(Partition $partition)
     {
         return $partition->getWeight();

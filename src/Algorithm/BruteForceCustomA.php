@@ -53,12 +53,12 @@ class BruteForceCustomA extends BasePartitionAlgorithm implements PartitionAlgor
 
             // If we've found a better variance with this subset, store it.
             if ($varianceCandidate < $variance) {
-                  $variance = $varianceCandidate;
-                  $solution = $subset;
+                $variance = $varianceCandidate;
+                $solution = $subset;
 
-                  // If the variance is equal to the size of the set module the number of
-                  // partition that we want, that means that's the best candidate,
-                  // store the value and exit the loop prematurely.
+                // If the variance is equal to the size of the set module the number of
+                // partition that we want, that means that's the best candidate,
+                // store the value and exit the loop prematurely.
                 if ($rest == $varianceCandidate) {
                     break;
                 }
