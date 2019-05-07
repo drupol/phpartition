@@ -42,7 +42,11 @@ com_crashlytics_export_strings.xml
 crashlytics.properties
 crashlytics-build.properties
 fabric.properties
-test.php
 
 
 .gitignore
+/composer.lock
+/.php_cs.cache
+/test.php
+/test2.php
+/tests/_output/
