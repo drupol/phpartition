@@ -1,0 +1,14 @@
+imports:
+    - { resource: vendor/drupol/php-conventions/config/php7/grumphp.yml }
+
+parameters:
+    tasks.phpstan.ignore_patterns:
+        - vendor/
+        - spec/
+        - tests/
+    tasks.phpcs.ignore_patterns:
+        - vendor/
+        - spec/
+        - tests/
+    extensions:
+        - drupol\PhpConventions\GrumphpTasksExtension
