@@ -50,3 +50,5 @@ fabric.properties
 /test.php
 /test2.php
 /tests/_output/
+/CHANGELOG.md
+/taskman.yml
