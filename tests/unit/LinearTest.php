@@ -72,7 +72,7 @@ final class LinearTest extends Unit
      *
      * @dataProvider linearTestProvider
      */
-    public function testLinear($dataset, $chunks, $expected)
+    public function testLinear($dataset, $chunks, $expected): void
     {
         $greedy = new Linear();
 

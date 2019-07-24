@@ -69,7 +69,7 @@ class Partitions implements \Countable
             };
         }
 
-        \usort($this->storage['partitions'], $compareCallable);
+        usort($this->storage['partitions'], $compareCallable);
 
         return $this;
     }

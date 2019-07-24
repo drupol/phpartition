@@ -72,7 +72,7 @@ final class CombinationsTest extends Unit
      *
      * @dataProvider combinationsTestProvider
      */
-    public function testCombinations($dataset, $chunks, $expected)
+    public function testCombinations($dataset, $chunks, $expected): void
     {
         $anytime = new Combinations();
 

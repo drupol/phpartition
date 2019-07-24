@@ -66,7 +66,7 @@ final class GreedyAltTest extends Unit
      *
      * @dataProvider greedyAltTestProvider
      */
-    public function testGreedyAlt($dataset, $chunks, $expected)
+    public function testGreedyAlt($dataset, $chunks, $expected): void
     {
         $greedy = new GreedyAlt();
 

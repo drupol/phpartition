@@ -47,9 +47,9 @@ abstract class Partitioner implements PartitionerInterface
      */
     final public function export(int $chunks = 1)
     {
-        return \array_map(
+        return array_map(
             static function (Partition $partition) {
-                return \array_values($partition->exportArrayCopy());
+                return array_values($partition->exportArrayCopy());
             },
             $this
                 ->run($chunks)

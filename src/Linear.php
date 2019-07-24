@@ -25,7 +25,7 @@ class Linear extends Partitioner
         // original version of this algorithm.
 
         // An array S of non-negative numbers {s1, ... ,sn}
-        $s = \array_merge([null], $dataset); // adapt indices here: [0..n-1] => [1..n]
+        $s = array_merge([null], $dataset); // adapt indices here: [0..n-1] => [1..n]
 
         // Integer K - number of ranges to split items into
         $k = $chunks;
@@ -41,6 +41,7 @@ class Linear extends Partitioner
         // 1) Init prefix sums array
         //    pi = sum of {s1, ..., si}
         $p[0] = $this->getPartitionItemFactory()::create(0);
+
         for ($i = 1; $i <= $n; ++$i) {
             $p[$i] = $this->getPartitionItemFactory()::create($p[$i - 1]->getWeight() + $s[$i]->getWeight());
         }
@@ -64,10 +65,11 @@ class Linear extends Partitioner
         for ($i = 2; $i <= $n; ++$i) {
             for ($j = 2; $j <= $k; ++$j) {
                 $solutions = [];
+
                 for ($x = 1; ($i - 1) >= $x; ++$x) {
                     $solutions[] = [
                         0 => $this->getPartitionItemFactory()::create(
-                            \max(
+                            max(
                                 $m[$x][$j - 1]->getWeight(),
                                 $p[$i]->getWeight() - $p[$x]->getWeight()
                             )
@@ -76,7 +78,7 @@ class Linear extends Partitioner
                     ];
                 }
 
-                \usort(
+                usort(
                     $solutions,
                     static function (array $x, array $y) {
                         return $x[0] <=> $y[0];
@@ -93,6 +95,7 @@ class Linear extends Partitioner
         $i = $n;
         $j = $k;
         $partition = [];
+
         while (0 < $j) {
             // delimiter position
             $dp = $d[$i][$j] ?? 0;

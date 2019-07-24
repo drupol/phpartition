@@ -25,7 +25,7 @@ final class PartitionTest extends Unit
      * @param mixed $input
      * @param mixed $expected
      */
-    public function testGetBounds($input, $expected)
+    public function testGetBounds($input, $expected): void
     {
         $partition = new Partition($input);
 

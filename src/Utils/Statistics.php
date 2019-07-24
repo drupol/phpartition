@@ -21,6 +21,7 @@ class Statistics
     {
         return $partition->getWeight() / $partition->count();
     }
+
     /**
      * @param \drupol\phpartition\Partition\Partition $partition
      *
@@ -30,7 +31,7 @@ class Statistics
     {
         $mean = self::meanPartition($partition);
 
-        $sumSquareDiff = \array_sum(\array_map(
+        $sumSquareDiff = array_sum(array_map(
             static function ($sum) use ($mean) {
                 return ($sum - $mean) ** 2;
             },
@@ -39,6 +40,7 @@ class Statistics
 
         return ($sumSquareDiff / $partition->count()) ** .5;
     }
+
     /**
      * @param \drupol\phpartition\Partitions\Partitions $partitions
      *
@@ -47,7 +49,7 @@ class Statistics
     public static function standardDeviationPartitions(Partitions $partitions)
     {
         $partition = new Partition(
-            \array_map(
+            array_map(
                 static function (Partition $partition) {
                     return $partition->getWeight();
                 },

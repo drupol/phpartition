@@ -4,9 +4,9 @@ declare(strict_types = 1);
 
 namespace drupol\phpartition\Partition;
 
-use drupol\phpartition\Contract\Valuable;
-use drupol\phpartition\Contract\PartitionItem as PartitionItemInterface;
 use drupol\phpartition\Contract\Partition as PartitionInterface;
+use drupol\phpartition\Contract\PartitionItem as PartitionItemInterface;
+use drupol\phpartition\Contract\Valuable;
 
 /**
  * Class Partition.
@@ -18,7 +18,7 @@ class Partition extends \ArrayObject implements PartitionInterface
      */
     public function exportArrayCopy()
     {
-        return \array_map(
+        return array_map(
             static function (Valuable $item) {
                 return $item->getValue();
             },

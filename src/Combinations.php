@@ -27,9 +27,9 @@ class Combinations extends Partitioner
      */
     public function __construct(int $timeout = 10)
     {
-        if (!\class_exists(CombinationsGenerator::class)) {
+        if (!class_exists(CombinationsGenerator::class)) {
             throw new \Exception(
-                \sprintf(
+                sprintf(
                     'The class %s is not available, run "%s" to get it.',
                     '\drupol\phpermutations\Generators\Combinations',
                     'composer require drupol/phpermutations'
@@ -66,7 +66,7 @@ class Combinations extends Partitioner
     protected function fillPartitions(Partitions $partitions, Partition $dataset, int $chunks): void
     {
         $partition = new Partition($dataset);
-        $partition->uasort(function ($left, $right) {
+        $partition->uasort(static function ($left, $right) {
             return $left->getWeight() <=> $right->getWeight();
         });
         $dataset = $partition->getArrayCopy();
@@ -76,14 +76,14 @@ class Combinations extends Partitioner
 
             $best = $partition->getWeight();
             $target = $best / $p;
-            $maxSize = \floor($partition->count() / $p);
+            $maxSize = floor($partition->count() / $p);
 
             $goodSubset = $this->getSubsets($maxSize, $dataset, $target, $best);
 
             // We cannot use array_udiff() to compare objects because we only need
             // to remove one object at a time.
             foreach ($goodSubset as $item) {
-                if (false !== $key = \array_search($item, $dataset, true)) {
+                if (false !== $key = array_search($item, $dataset, true)) {
                     unset($dataset[$key]);
                 }
             }
@@ -110,21 +110,24 @@ class Combinations extends Partitioner
      */
     private function getSubsets($maxSize, $dataset, $target, $best)
     {
-        $start_time = \time();
+        $start_time = time();
         $goodSubsets = $dataset;
         $timeout = $this->getTimeout();
 
         for ($i = 1; $i <= $maxSize; ++$i) {
             $permutations = new CombinationsGenerator($dataset, $i);
+
             foreach ($permutations->generator() as $subset) {
-                if (\time() - $start_time > $timeout) {
+                if (time() - $start_time > $timeout) {
                     return $goodSubsets;
                 }
 
                 $x = 0;
+
                 foreach ($subset as $item) {
                     $x += $item->getWeight();
-                    if (\abs($x - $target) < \abs($best - $target)) {
+
+                    if (abs($x - $target) < abs($best - $target)) {
                         $best = $x;
                         $goodSubsets = $subset;
                     }

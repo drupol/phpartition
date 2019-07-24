@@ -72,7 +72,7 @@ final class GreedyTest extends Unit
      *
      * @dataProvider greedyTestProvider
      */
-    public function testGreedy($dataset, $chunks, $expected)
+    public function testGreedy($dataset, $chunks, $expected): void
     {
         $greedy = new Greedy();
 

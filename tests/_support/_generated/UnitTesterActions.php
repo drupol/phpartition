@@ -913,6 +913,7 @@ trait UnitTesterActions
     {
         return $this->getScenario()->runStep(new \Codeception\Step\Action('fail', \func_get_args()));
     }
+
     /**
      * @return \Codeception\Scenario
      */
