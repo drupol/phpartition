@@ -1,5 +1,5 @@
 imports:
-    - { resource: vendor/drupol/php-conventions/config/php7/grumphp.yml }
+    - { resource: vendor/drupol/php-conventions/config/php71/grumphp.yml }
 
 parameters:
     tasks.phpstan.ignore_patterns:
@@ -10,5 +10,5 @@ parameters:
         - vendor/
         - spec/
         - tests/
-    extensions:
-        - drupol\PhpConventions\GrumphpTasksExtension
+    extra_tasks:
+        codeception: ~
