@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace drupol\phpartition;
 
@@ -25,7 +25,7 @@ class Linear extends Partitioner
         // original version of this algorithm.
 
         // An array S of non-negative numbers {s1, ... ,sn}
-        $s = array_merge([null], $dataset); // adapt indices here: [0..n-1] => [1..n]
+        $s = \array_merge([null], $dataset); // adapt indices here: [0..n-1] => [1..n]
 
         // Integer K - number of ranges to split items into
         $k = $chunks;
@@ -69,7 +69,7 @@ class Linear extends Partitioner
                 for ($x = 1; ($i - 1) >= $x; ++$x) {
                     $solutions[] = [
                         0 => $this->getPartitionItemFactory()::create(
-                            max(
+                            \max(
                                 $m[$x][$j - 1]->getWeight(),
                                 $p[$i]->getWeight() - $p[$x]->getWeight()
                             )
@@ -78,7 +78,7 @@ class Linear extends Partitioner
                     ];
                 }
 
-                usort(
+                \usort(
                     $solutions,
                     static function (array $x, array $y) {
                         return $x[0] <=> $y[0];

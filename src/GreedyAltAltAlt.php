@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace drupol\phpartition;
 
@@ -33,22 +33,22 @@ class GreedyAltAltAlt extends Partitioner
         for ($p = 1; $p < $chunks; ++$p) {
             $partition = $this->getPartitionFactory()::create();
 
-            reset($dataset);
-            $key = key($dataset);
+            \reset($dataset);
+            $key = \key($dataset);
             $partition->append($dataset[$key]);
             unset($dataset[$key]);
-            $dataset->exchangeArray(array_values(array_reverse($dataset->getArrayCopy())));
+            $dataset->exchangeArray(\array_values(\array_reverse($dataset->getArrayCopy())));
 
             while ($partition->getWeight() < $best) {
-                reset($dataset);
-                $key = key($dataset);
+                \reset($dataset);
+                $key = \key($dataset);
                 $partition->append($dataset[$key]);
                 unset($dataset[$key]);
             }
 
             $partitionsArray[] = $partition;
 
-            $dataset->exchangeArray(array_values(array_reverse($dataset->getArrayCopy())));
+            $dataset->exchangeArray(\array_values(\array_reverse($dataset->getArrayCopy())));
         }
 
         $partitionsArray[] = $dataset;

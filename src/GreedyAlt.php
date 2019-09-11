@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace drupol\phpartition;
 
@@ -67,7 +67,7 @@ class GreedyAlt extends Partitioner
         // dataset.
         if (0 === $partition->count()) {
             // As the dataset is sorted DESC, return the highest value.
-            return key($dataset);
+            return \key($dataset);
         }
 
         // Find which number in the $dataset would be the best fit by checking
@@ -76,15 +76,15 @@ class GreedyAlt extends Partitioner
         // of chunks we want to have.
         $partitionWeightMinusBest = $partition->getWeight() - $best;
 
-        $solutions = array_map(
+        $solutions = \array_map(
             static function (PartitionItem $item) use ($partitionWeightMinusBest) {
-                return abs($partitionWeightMinusBest + $item->getWeight());
+                return \abs($partitionWeightMinusBest + $item->getWeight());
             },
-            iterator_to_array($dataset)
+            \iterator_to_array($dataset)
         );
 
-        asort($solutions);
+        \asort($solutions);
 
-        return key($solutions);
+        return \key($solutions);
     }
 }

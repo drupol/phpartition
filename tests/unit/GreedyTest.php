@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace drupol\phpartition\Tests\unit;
 
@@ -78,6 +78,6 @@ final class GreedyTest extends Unit
 
         $greedy->setDataset($dataset);
 
-        static::assertSame($expected, $greedy->export($chunks));
+        self::assertSame($expected, $greedy->export($chunks));
     }
 }

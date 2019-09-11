@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace drupol\phpartition\Partitions;
 
@@ -69,7 +69,7 @@ class Partitions implements \Countable
             };
         }
 
-        usort($this->storage['partitions'], $compareCallable);
+        \usort($this->storage['partitions'], $compareCallable);
 
         return $this;
     }

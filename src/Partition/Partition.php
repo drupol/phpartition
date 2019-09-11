@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace drupol\phpartition\Partition;
 
@@ -18,7 +18,7 @@ class Partition extends \ArrayObject implements PartitionInterface
      */
     public function exportArrayCopy()
     {
-        return array_map(
+        return \array_map(
             static function (Valuable $item) {
                 return $item->getValue();
             },
@@ -31,8 +31,8 @@ class Partition extends \ArrayObject implements PartitionInterface
      */
     public function getBounds(): array
     {
-        $max = PHP_INT_MAX;
-        $min = PHP_INT_MIN;
+        $max = \PHP_INT_MAX;
+        $min = \PHP_INT_MIN;
 
         $bounds = [];
 

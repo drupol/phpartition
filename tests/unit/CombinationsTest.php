@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace drupol\phpartition\Tests\unit;
 
@@ -78,6 +78,6 @@ final class CombinationsTest extends Unit
 
         $anytime->setDataset($dataset);
 
-        static::assertSame($expected, $anytime->export($chunks));
+        self::assertSame($expected, $anytime->export($chunks));
     }
 }

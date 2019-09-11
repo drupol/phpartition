@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace drupol\phpartition;
 
@@ -57,7 +57,7 @@ class GreedyAltAlt extends Partitioner
 
                 $partition->append($dataset[$key]);
                 unset($dataset[$key]);
-                $dataset->exchangeArray(array_values($dataset->getArrayCopy()));
+                $dataset->exchangeArray(\array_values($dataset->getArrayCopy()));
             }
 
             $partitionsArray[] = $partition;

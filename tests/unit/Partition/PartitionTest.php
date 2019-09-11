@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace drupol\phpartition\Tests\unit\Partition;
 
@@ -29,7 +29,7 @@ final class PartitionTest extends Unit
     {
         $partition = new Partition($input);
 
-        static::assertSame($expected, $partition->getBounds());
+        self::assertSame($expected, $partition->getBounds());
     }
 
     public function testGetBoundsProvider()
